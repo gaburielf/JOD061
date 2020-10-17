@@ -1,0 +1,164 @@
+1 - Levantar informações sobre IP, máscara de rede, gateway e servidor DNS do host.
+
+Configuração de IP do Windows
+
+
+Adaptador de Rede sem Fio Conexão Local* 4:
+
+   Estado da mídia. . . . . . . . . . . . . .  : mídia desconectada
+   Sufixo DNS específico de conexão. . . . . . :
+
+Adaptador de Rede sem Fio Conexão Local* 5:
+
+   Estado da mídia. . . . . . . . . . . . . .  : mídia desconectada
+   Sufixo DNS específico de conexão. . . . . . :
+
+Adaptador de Rede sem Fio Wi-Fi 3:
+
+   Estado da mídia. . . . . . . . . . . . . .  : mídia desconectada
+   Sufixo DNS específico de conexão. . . . . . :
+
+Adaptador Ethernet Ethernet 5:
+
+   Sufixo DNS específico de conexão. . . . . . :
+   Endereço IPv6 . . . . . . . . . . : 2804:d59:1b8d:e700:61a2:2ef:d6e4:f584
+   Endereço IPv6 Temporário. . . . . . . . : 2804:d59:1b8d:e700:79e8:10a0:417d:ba8f
+   Endereço IPv6 de link local . . . . . . . . : fe80::61a2:2ef:d6e4:f584%19
+   Endereço IPv4. . . . . . . .  . . . . . . . : 192.168.1.7
+   Máscara de Sub-rede . . . . . . . . . . . . : 255.255.255.0
+   Gateway Padrão. . . . . . . . . . . . . . . : fe80::6613:6cff:fe34:bab4%19
+                                                 192.168.1.1
+
+
+2 - Verificar tempo de reposta e perda de pacotes entre host e roteador WiFi considerando uma distância onde o sinal é fraco.
+
+C:\Users\Cliente>ping 192.168.1.7
+
+Disparando 192.168.1.7 com 32 bytes de dados:
+Resposta de 192.168.1.7: bytes=32 tempo<1ms TTL=128
+Resposta de 192.168.1.7: bytes=32 tempo<1ms TTL=128
+Resposta de 192.168.1.7: bytes=32 tempo<1ms TTL=128
+Resposta de 192.168.1.7: bytes=32 tempo<1ms TTL=128
+
+Estatísticas do Ping para 192.168.1.7:
+    Pacotes: Enviados = 4, Recebidos = 4, Perdidos = 0 (0% de
+             perda),
+Aproximar um número redondo de vezes em milissegundos:
+    Mínimo = 0ms, Máximo = 0ms, Média = 0ms
+
+2.1 - Tirando o cabo
+
+C:\Users\Cliente>ping 192.168.1.7
+
+Disparando 192.168.1.7 com 32 bytes de dados:
+Resposta de 192.168.1.7: bytes=32 tempo<1ms TTL=128
+Falha Geral.
+Falha Geral.
+Falha Geral.
+
+Estatísticas do Ping para 189.73.255.30:
+    Pacotes: Enviados = 4, Recebidos = 1, Perdidos = 3 (75% de
+             perda),
+Aproximar um número redondo de vezes em milissegundos:
+    Mínimo = 0ms, Máximo = 0ms, Média = 0ms
+
+
+    3 - Verificar a resolução de nomes para os hosts www.iesb.br e intranet.iesb.br.
+
+    C:\Users\Cliente>nslookup www.iesb.br
+Servidor:  csp3.zte.com.cn
+Address:  fe80::6613:6cff:fe34:bab4
+
+Não é resposta autoritativa:
+DNS request timed out.
+    timeout was 2 seconds.
+Nome:    www.iesb.br
+Address:  54.174.194.96
+
+C:\Users\Cliente>nslookup intranet.iesb.br
+Servidor:  csp1.zte.com.cn
+Address:  fe80::6613:6cff:fe34:bab4
+
+Não é resposta autoritativa:
+DNS request timed out.
+    timeout was 2 seconds.
+Nome:    intranet.iesb.br
+Address:  186.251.61.197
+
+4 - Verificar rotas para os hosts www.iesb.br e intranet.iesb.br.
+
+C:\Users\Cliente>tracert www.iesb.br
+
+Rastreando a rota para www.iesb.br [54.174.194.96]
+com no máximo 30 saltos:
+
+  1    <1 ms    <1 ms    <1 ms  iniciarbldaoi [192.168.1.1]
+  2     *        *        *     Esgotado o tempo limite do pedido.
+  3    18 ms    16 ms    13 ms  100.120.67.145
+  4     *       84 ms    73 ms  100.120.21.255
+  5    15 ms    15 ms    83 ms  te-0-0-0-0-ETCE-DF-ROTB-01.brasiltelecom.net.br [177.2.192.100]
+  6     *        *      124 ms  100.120.17.65
+  7    53 ms    47 ms    50 ms  100.122.18.53
+  8   246 ms   241 ms   235 ms  100.122.22.43
+  9   229 ms   215 ms   210 ms  xe-5-0-2.0-mia-us-rotb-j01.telemar.net.br [200.223.46.122]
+ 10   239 ms   228 ms   230 ms  52.93.4.79
+ 11   160 ms   162 ms   160 ms  52.93.4.24
+ 12     *        *        *     Esgotado o tempo limite do pedido.
+ 13     *        *        *     Esgotado o tempo limite do pedido.
+ 14     *        *        *     Esgotado o tempo limite do pedido.
+ 15     *        *        *     Esgotado o tempo limite do pedido.
+ 16     *        *        *     Esgotado o tempo limite do pedido.
+ 17     *        *        *     Esgotado o tempo limite do pedido.
+ 18   186 ms   187 ms   186 ms  150.222.243.217
+ 19     *        *        *     Esgotado o tempo limite do pedido.
+ 20     *        *        *     Esgotado o tempo limite do pedido.
+ 21     *        *        *     Esgotado o tempo limite do pedido.
+ 22     *        *        *     Esgotado o tempo limite do pedido.
+ 23     *        *        *     Esgotado o tempo limite do pedido.
+ 24     *        *        *     Esgotado o tempo limite do pedido.
+ 25     *        *        *     Esgotado o tempo limite do pedido.
+ 26     *        *        *     Esgotado o tempo limite do pedido.
+ 27     *        *        *     Esgotado o tempo limite do pedido.
+ 28     *        *        *     Esgotado o tempo limite do pedido.
+ 29     *      187 ms   187 ms  52.93.28.206
+ 30     *        *        *     Esgotado o tempo limite do pedido.
+
+Rastreamento concluído.
+
+C:\Users\Cliente>tracert intranet.iesb.br
+
+Rastreando a rota para intranet.iesb.br [186.251.61.197]
+com no máximo 30 saltos:
+
+  1    <1 ms    <1 ms    <1 ms  csp3.zte.com.cn [192.168.1.1]
+  2     *        *        *     Esgotado o tempo limite do pedido.
+  3    39 ms    17 ms    15 ms  100.120.67.137
+  4    63 ms    60 ms    58 ms  100.120.18.205
+  5    88 ms    60 ms    38 ms  100.120.16.235
+  6    41 ms    40 ms    40 ms  etpn-sp-rotb-j01-xe-0-1-3.brasiltelecom.net.br [201.10.241.11]
+  7    39 ms    37 ms   120 ms  201.10.241.186
+  8   133 ms   124 ms   123 ms  67.16.163.142
+  9    98 ms   115 ms    47 ms  214.255.125.189.static.impsat.net.br [189.125.255.214]
+ 10   115 ms   124 ms   128 ms  45.171.103.234
+ 11     *        *        *     Esgotado o tempo limite do pedido.
+ 12     *        *        *     Esgotado o tempo limite do pedido.
+ 13     *        *        *     Esgotado o tempo limite do pedido.
+ 14     *        *        *     Esgotado o tempo limite do pedido.
+ 15     *        *        *     Esgotado o tempo limite do pedido.
+ 16     *        *        *     Esgotado o tempo limite do pedido.
+ 17     *        *        *     Esgotado o tempo limite do pedido.
+ 18     *        *        *     Esgotado o tempo limite do pedido.
+ 19     *        *        *     Esgotado o tempo limite do pedido.
+ 20     *        *        *     Esgotado o tempo limite do pedido.
+ 21     *        *        *     Esgotado o tempo limite do pedido.
+ 22     *        *        *     Esgotado o tempo limite do pedido.
+ 23     *        *        *     Esgotado o tempo limite do pedido.
+ 24     *        *        *     Esgotado o tempo limite do pedido.
+ 25     *        *        *     Esgotado o tempo limite do pedido.
+ 26     *        *        *     Esgotado o tempo limite do pedido.
+ 27     *        *        *     Esgotado o tempo limite do pedido.
+ 28     *        *        *     Esgotado o tempo limite do pedido.
+ 29     *        *        *     Esgotado o tempo limite do pedido.
+ 30     *        *        *     Esgotado o tempo limite do pedido.
+
+Rastreamento concluído.
